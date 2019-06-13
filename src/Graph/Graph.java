@@ -28,4 +28,8 @@ public class Graph {
     public LinkedList<Arco> getAdyacentes(int ver){
     	return adjacencylist[ver];
     }
+    
+    public LinkedList<Arco>[] getAdjacencylist(){
+    	return adjacencylist;
+    } 
 }
