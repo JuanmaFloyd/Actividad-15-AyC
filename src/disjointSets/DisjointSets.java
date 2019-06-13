@@ -1,6 +1,6 @@
 package disjointSets;
 
-import Graph.Graph;;
+import Graph.Graph;
 
 public class DisjointSets {
 		
