@@ -1,5 +1,6 @@
 package Analisis;
 import java.util.ArrayList;
+import Graph.Graph;
 
 public class Grafo {
 	private int[] nodos;
@@ -35,6 +36,17 @@ public class Grafo {
 		return this.arcos.size();
 	}
 	
+	public Graph getGraphFromGrafo(){
+		Graph graph = new Graph(nodos.length);
+		int i = 0;
+		for (Pesado pesado : arcos){
+			graph.addEgde(pesado.arco.nodo1, pesado.arco.nodo2, pesado.peso);
+			graph.addEgde(pesado.arco.nodo2, pesado.arco.nodo1, pesado.peso);
+			System.out.println(++i);
+		}
+		
+		return graph;
+	}
 
 	@SuppressWarnings("rawtypes")
 	public Grafo(GrafoObj grafoJson){

@@ -5,6 +5,8 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import Graph.Graph;
+
 	public class AnalisisEmpirico{
 		
 		public static void main(String[] args) throws IOException {

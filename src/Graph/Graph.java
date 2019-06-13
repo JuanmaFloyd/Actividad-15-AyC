@@ -1,13 +1,11 @@
 package Graph;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class Graph {
-    int vertices;
-    LinkedList<Arco> [] adjacencylist;
+    private int vertices;
+    private LinkedList<Arco> [] adjacencylist;
 
-    Graph(int vertices) {
+    public Graph(int vertices) {
         this.vertices = vertices;
         adjacencylist = new LinkedList[vertices];
         //initialize adjacency lists for all the vertices
@@ -19,5 +17,13 @@ public class Graph {
     public void addEgde(int source, int destination, int weight) {
         Arco arco = new Arco(source, destination, weight);
         adjacencylist[source].add(arco);
+    }
+    
+    public int getVertices(){
+    	return vertices;
+    }
+    
+    public LinkedList<Arco> getAdyacentes(int ver){
+    	return adjacencylist[ver];
     }
 }
