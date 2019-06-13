@@ -15,8 +15,10 @@ public class Graph {
     }
 
     public void addEgde(int source, int destination, int weight) {
-        Arco arco = new Arco(source, destination, weight);
-        adjacencylist[source].add(arco);
+        Arco arco1 = new Arco(source, destination, weight);
+        Arco arco2 = new Arco(destination, source, weight);
+        adjacencylist[source].add(arco1);
+        adjacencylist[destination].add(arco2);
     }
     
     public int getVertices(){

@@ -35,10 +35,8 @@ public class Metodos {
 	private static void visitar(Graph grafo, LinkedList<Integer> cola, int[] color){
 		while(!cola.isEmpty()){
 			int u = cola.getFirst();
-			System.out.println("u="+u);
 			for (Arco arco : grafo.getAdyacentes(u)){
 				if (color[arco.destination] == BLANCO){
-					System.out.println(arco.destination);
 					color[arco.destination] = GRIS;
 					cola.addLast(arco.destination);
 				}

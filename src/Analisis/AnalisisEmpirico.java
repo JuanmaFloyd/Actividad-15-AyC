@@ -18,7 +18,7 @@ import Graph.Graph;
 				g.addEgde(0, 1, 20);
 				g.addEgde(1, 2, 20);
 				g.addEgde(3, 2, 20);
-				g.addEgde(4, 3, 20);
+				g.addEgde(3, 4, 20);
 				boolean a = Metodos.esConexo(g);
 				System.out.println(a);
 			} catch (Exception e) {
