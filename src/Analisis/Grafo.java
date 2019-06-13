@@ -42,7 +42,6 @@ public class Grafo {
 		for (Pesado pesado : arcos){
 			graph.addEgde(pesado.arco.nodo1, pesado.arco.nodo2, pesado.peso);
 			graph.addEgde(pesado.arco.nodo2, pesado.arco.nodo1, pesado.peso);
-			System.out.println(++i);
 		}
 		
 		return graph;

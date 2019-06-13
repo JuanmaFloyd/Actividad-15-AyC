@@ -12,8 +12,15 @@ import Graph.Graph;
 		public static void main(String[] args) throws IOException {
 			
 			try{
-				Grafo grafo = getGrafo(500,40000);
+				Grafo grafo = getGrafo(5,5);
 				System.out.println("Grafo conexo con "+ grafo.getNodosCount() + " nodos y "+ grafo.getArcosCount() + " arcos construido");
+				Graph g = new Graph(5);
+				g.addEgde(0, 1, 20);
+				g.addEgde(1, 2, 20);
+				g.addEgde(3, 2, 20);
+				g.addEgde(4, 3, 20);
+				boolean a = Metodos.esConexo(g);
+				System.out.println(a);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
@@ -32,7 +39,7 @@ import Graph.Graph;
 
 		private static Grafo getGrafo(int nodos, int arcos) throws Exception {
 			// TODO Auto-generated method stub
-			String consulta = "curl http://cs.uns.edu.ar/~mom/AyC2019/grafo.php?nodos="+nodos+"&arcos="+arcos;
+			String consulta = "curl http://cs.uns.edu.ar/~mom/AyC2019/grafo.php?nodos="+nodos+"&arcos="+arcos+"&conexo="+0;
 			Process process = Runtime.getRuntime().exec(consulta);
 			InputStream inputSt = process.getInputStream();
 			@SuppressWarnings("resource")
