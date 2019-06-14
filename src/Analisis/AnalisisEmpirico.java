@@ -17,10 +17,12 @@ import Graph.Graph;
 				Graph g = new Graph(5);
 				g.addEgde(0, 1, 20);
 				g.addEgde(1, 2, 20);
-				g.addEgde(3, 2, 20);
+				g.addEgde(1, 4, 10);
 				g.addEgde(3, 4, 20);
 				boolean a = Metodos.esConexo(g);
 				System.out.println(a);
+				boolean b = Metodos.esConexoDS(g);
+				System.out.println(b);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
@@ -54,4 +56,5 @@ import Graph.Graph;
 				throw new Exception(jsonString);
 			}
 		}
+		
 	}

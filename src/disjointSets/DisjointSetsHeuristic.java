@@ -1,21 +1,21 @@
 package disjointSets;
 
-public class DisjointSets {
-		
-	private Node[] nodes;
+public class DisjointSetsHeuristic {
+	private NodeH[] nodes;
 	private int sets;
 		
-	public DisjointSets(int numElems) {
-		nodes = new Node[numElems];
+	public DisjointSetsHeuristic(int numElems) {
+		nodes = new NodeH[numElems];
 		for (int i = 0; i < numElems; i++) {
-			Node node = new Node();
+			NodeH node = new NodeH();
 			node.parent = node;
+			node.rank = 0;
 			nodes[i] = node;
 		}
 		sets = numElems;
 	}
 		
-	private static Node find(Node node) {
+	private static NodeH find(NodeH node) {
 		if (node.parent != node)
 			find(node.parent);
 		return node.parent;
@@ -25,16 +25,24 @@ public class DisjointSets {
 		return find(elemIndex0) == find(elemIndex1);
 	}
 	
-	private Node find(int elemIndex) {
+	private NodeH find(int elemIndex) {
 		return find(nodes[elemIndex]);
 	}
 	
 	public boolean union(int elemIndex0, int elemIndex1) {
-		Node repr0 = find(elemIndex0);
-		Node repr1 = find(elemIndex1);		
+		NodeH repr0 = find(elemIndex0);
+		NodeH repr1 = find(elemIndex1);		
 		if (repr0 == repr1)
 			return false;		
-		repr1.parent = repr0;
+
+		if (repr0.rank > repr1.rank)
+			repr1.parent = repr0;
+		else{
+			repr0.parent = repr1;
+			if (repr0.rank == repr1.rank)
+				repr1.rank++;
+		}
+		
 		sets -= 1;
 		return true;
 	}

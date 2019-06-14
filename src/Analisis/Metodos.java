@@ -1,13 +1,24 @@
 package Analisis;
-import java.util.LinkedList;
 
+import java.util.LinkedList;
 import Graph.Arco;
 import Graph.Graph;
+import disjointSets.DisjointSetsHeuristic;
 
 public class Metodos {
 	private static final int BLANCO = 0;
 	private static final int GRIS = 1;
 	private static final int NEGRO = 2;
+	
+	public static boolean esConexoDS(Graph grafo){
+		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());
+		
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+			for(Arco arco : lista)
+				ds.union(arco.destination, arco.source);
+				
+		return ds.getNumberOfSets() == 1;
+	}
 
 	public static boolean esConexo(Graph grafo){
 		int[] color = new int[grafo.getVertices()];
