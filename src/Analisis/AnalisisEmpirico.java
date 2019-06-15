@@ -1,10 +1,12 @@
 package Analisis;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import Graph.Arco;
 import Graph.Graph;
 
 	public class AnalisisEmpirico{
@@ -14,15 +16,27 @@ import Graph.Graph;
 			try{
 				Grafo grafo = getGrafo(5,5);
 				System.out.println("Grafo conexo con "+ grafo.getNodosCount() + " nodos y "+ grafo.getArcosCount() + " arcos construido");
-				Graph g = new Graph(5);
-				g.addEgde(0, 1, 20);
-				g.addEgde(1, 2, 20);
-				g.addEgde(1, 4, 10);
-				g.addEgde(3, 4, 20);
-				boolean a = Metodos.esConexo(g);
-				System.out.println(a);
-				boolean b = Metodos.esConexoDS(g);
-				System.out.println(b);
+				Graph g = new Graph(9);
+				g.addEgde(0, 1, 4);
+				g.addEgde(0, 7, 8);
+				//g.addEgde(1, 2, 8);
+				//g.addEgde(1, 7, 11);
+				g.addEgde(2, 8, 2);
+				g.addEgde(2, 5, 4);
+				g.addEgde(2, 3, 7);
+				g.addEgde(3, 4, 9);
+				//g.addEgde(3, 5, 10);
+				//g.addEgde(4, 5, 14);
+				//g.addEgde(5, 6, 2);
+				//g.addEgde(6, 8, 6);
+				g.addEgde(6, 7, 1);
+				//g.addEgde(8, 7, 7);
+				
+				//LinkedList<Arco> r = Metodos.kruskalAA(g);
+				System.out.println(Metodos.esConexo(g));
+				System.out.println(Metodos.esConexoDS(g));
+				//for (Arco arco : r)
+					//System.out.println(arco.source+" "+arco.destination+" "+arco.weight);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

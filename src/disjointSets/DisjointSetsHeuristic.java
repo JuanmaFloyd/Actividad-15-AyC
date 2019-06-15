@@ -17,7 +17,7 @@ public class DisjointSetsHeuristic {
 		
 	private static NodeH find(NodeH node) {
 		if (node.parent != node)
-			find(node.parent);
+			node.parent = find(node.parent);
 		return node.parent;
 	}
 	

@@ -17,7 +17,7 @@ public class DisjointSets {
 		
 	private static Node find(Node node) {
 		if (node.parent != node)
-			find(node.parent);
+			return find(node.parent);
 		return node.parent;
 	}
 	
