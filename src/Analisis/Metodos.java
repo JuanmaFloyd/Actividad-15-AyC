@@ -3,6 +3,7 @@ package Analisis;
 import java.util.LinkedList;
 import Graph.Arco;
 import Graph.Graph;
+import Heap.Heap;
 import disjointSets.DisjointSets;
 import disjointSets.DisjointSetsHeuristic;
 
@@ -11,11 +12,106 @@ public class Metodos {
 	private static final int GRIS = 1;
 	private static final int NEGRO = 2;
 	
-	public static LinkedList<Arco> kruskalAA(Graph grafo){
+	public static LinkedList<Arco> kruskalBB(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
 		int cantArcos = 0;
 		int i = 0;
 		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());		
+		
+		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
+			cantArcos += lista.size();
+		
+		Arco[] arcos = new Arco[cantArcos];
+		
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+			for(Arco arco : lista){
+				arcos[i] = arco;
+				i++;
+			}
+		
+		Heap heap = new Heap(arcos);
+		
+		Arco arco;
+		do{
+			arco = heap.removeMin();
+			if(!ds.inSameSet(arco.destination, arco.source)){
+				ds.union(arco.destination, arco.source);
+				T.add(arco);
+			}
+		} while(!(T.size() == grafo.getVertices()-1));
+		
+		return T;
+	}
+	
+	public static LinkedList<Arco> kruskalBA(Graph grafo){
+		LinkedList<Arco> T = new LinkedList<>();
+		int cantArcos = 0;
+		int i = 0;
+		DisjointSets ds = new DisjointSets(grafo.getVertices());		
+		
+		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
+			cantArcos += lista.size();
+		
+		Arco[] arcos = new Arco[cantArcos];
+		
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+			for(Arco arco : lista){
+				arcos[i] = arco;
+				i++;
+			}
+		
+		Heap heap = new Heap(arcos);
+		
+		Arco arco;
+		do{
+			arco = heap.removeMin();
+			if(!ds.inSameSet(arco.destination, arco.source)){
+				ds.union(arco.destination, arco.source);
+				T.add(arco);
+			}
+		} while(!(T.size() == grafo.getVertices()-1));
+		
+		return T;
+	}
+	
+	public static LinkedList<Arco> kruskalAB(Graph grafo){
+		LinkedList<Arco> T = new LinkedList<>();
+		int cantArcos = 0;
+		int i = 0;
+		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());		
+		
+		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
+			cantArcos += lista.size();
+		
+		Arco[] arcos = new Arco[cantArcos];
+		
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+			for(Arco arco : lista){
+				arcos[i] = arco;
+				i++;
+			}
+		
+		mergeSort(arcos, 0, cantArcos-1);
+		
+		i = 0;
+		Arco arco;
+		do{
+			arco = arcos[i];
+			i++;
+			if(!ds.inSameSet(arco.destination, arco.source)){
+				ds.union(arco.destination, arco.source);
+				T.add(arco);
+			}
+		} while(!(T.size() == grafo.getVertices()-1));
+		
+		return T;
+	}
+	
+	public static LinkedList<Arco> kruskalAA(Graph grafo){
+		LinkedList<Arco> T = new LinkedList<>();
+		int cantArcos = 0;
+		int i = 0;
+		DisjointSets ds = new DisjointSets(grafo.getVertices());		
 		
 		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
 			cantArcos += lista.size();
