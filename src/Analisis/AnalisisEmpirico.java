@@ -14,8 +14,8 @@ import Graph.Graph;
 		public static void main(String[] args) throws IOException {
 			
 			try{
-				//Grafo grafo = getGrafo(5,5);
-				//System.out.println("Grafo conexo con "+ grafo.getNodosCount() + " nodos y "+ grafo.getArcosCount() + " arcos construido");
+				Grafo grafo = getGrafo(5,5);
+				System.out.println("Grafo conexo con "+ grafo.getNodosCount() + " nodos y "+ grafo.getArcosCount() + " arcos construido");
 				Graph g = new Graph(9);
 				g.addEgde(0, 1, 4);
 				g.addEgde(0, 7, 8);
@@ -33,8 +33,21 @@ import Graph.Graph;
 				g.addEgde(8, 7, 7);
 				
 				LinkedList<Arco> t1 = Metodos.kruskalAA(g);
-				LinkedList<Arco> t2 = Metodos.kruskalBA(g);
+				LinkedList<Arco> t2 = Metodos.kruskalAB(g);
+				LinkedList<Arco> t3 = Metodos.kruskalBA(g);
+				LinkedList<Arco> t4 = Metodos.kruskalBB(g);
 				
+				for (Arco arco : t1)
+					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
+				System.out.println("----------------------------------------------");
+				for (Arco arco : t2)
+					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
+				System.out.println("----------------------------------------------");
+				for (Arco arco : t3)
+					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
+				System.out.println("----------------------------------------------");
+				for (Arco arco : t4)
+					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
 				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());

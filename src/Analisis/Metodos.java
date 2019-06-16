@@ -14,14 +14,10 @@ public class Metodos {
 	
 	public static LinkedList<Arco> kruskalBB(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
-		int cantArcos = 0;
 		int i = 0;
 		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());		
 		
-		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
-			cantArcos += lista.size();
-		
-		Arco[] arcos = new Arco[cantArcos];
+		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
 		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
 			for(Arco arco : lista){
@@ -45,14 +41,10 @@ public class Metodos {
 	
 	public static LinkedList<Arco> kruskalBA(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
-		int cantArcos = 0;
 		int i = 0;
-		DisjointSets ds = new DisjointSets(grafo.getVertices());		
+		DisjointSets ds = new DisjointSets(grafo.getVertices());
 		
-		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
-			cantArcos += lista.size();
-		
-		Arco[] arcos = new Arco[cantArcos];
+		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
 		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
 			for(Arco arco : lista){
@@ -76,14 +68,10 @@ public class Metodos {
 	
 	public static LinkedList<Arco> kruskalAB(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
-		int cantArcos = 0;
 		int i = 0;
-		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());		
+		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());
 		
-		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
-			cantArcos += lista.size();
-		
-		Arco[] arcos = new Arco[cantArcos];
+		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
 		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
 			for(Arco arco : lista){
@@ -91,7 +79,7 @@ public class Metodos {
 				i++;
 			}
 		
-		mergeSort(arcos, 0, cantArcos-1);
+		mergeSort(arcos, 0, grafo.getCantArcos()-1);
 		
 		i = 0;
 		Arco arco;
@@ -109,14 +97,10 @@ public class Metodos {
 	
 	public static LinkedList<Arco> kruskalAA(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
-		int cantArcos = 0;
 		int i = 0;
-		DisjointSets ds = new DisjointSets(grafo.getVertices());		
+		DisjointSets ds = new DisjointSets(grafo.getVertices());
 		
-		for (LinkedList<Arco> lista : grafo.getAdjacencylist())
-			cantArcos += lista.size();
-		
-		Arco[] arcos = new Arco[cantArcos];
+		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
 		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
 			for(Arco arco : lista){
@@ -124,7 +108,7 @@ public class Metodos {
 				i++;
 			}
 		
-		mergeSort(arcos, 0, cantArcos-1);
+		mergeSort(arcos, 0, grafo.getCantArcos()-1);
 		
 		i = 0;
 		Arco arco;
