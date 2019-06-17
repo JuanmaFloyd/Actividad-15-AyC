@@ -128,8 +128,10 @@ public class Metodos {
 		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());
 		
 		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
-			for(Arco arco : lista)
+			for(Arco arco : lista){
 				ds.union(arco.destination, arco.source);
+				if (ds.getNumberOfSets() == 1) return true;
+			}
 				
 		return ds.getNumberOfSets() == 1;
 	}

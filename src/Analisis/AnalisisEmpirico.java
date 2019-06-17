@@ -1,12 +1,9 @@
 package Analisis;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import Graph.Arco;
 import Graph.Graph;
 
 	public class AnalisisEmpirico{
@@ -14,40 +11,21 @@ import Graph.Graph;
 		public static void main(String[] args) throws IOException {
 			
 			try{
-				Grafo grafo = getGrafo(5,5);
+				Grafo grafo = getGrafo(150, 1000);
 				System.out.println("Grafo conexo con "+ grafo.getNodosCount() + " nodos y "+ grafo.getArcosCount() + " arcos construido");
-				Graph g = new Graph(9);
-				g.addEgde(0, 1, 4);
-				g.addEgde(0, 7, 8);
-				g.addEgde(1, 2, 8);
-				g.addEgde(1, 7, 11);
-				g.addEgde(2, 8, 2);
-				g.addEgde(2, 5, 4);
-				g.addEgde(2, 3, 7);
-				g.addEgde(3, 4, 9);
-				g.addEgde(3, 5, 10);
-				g.addEgde(4, 5, 14);
-				g.addEgde(5, 6, 2);
-				g.addEgde(6, 8, 6);
-				g.addEgde(6, 7, 1);
-				g.addEgde(8, 7, 7);
 				
-				LinkedList<Arco> t1 = Metodos.kruskalAA(g);
-				LinkedList<Arco> t2 = Metodos.kruskalAB(g);
-				LinkedList<Arco> t3 = Metodos.kruskalBA(g);
-				LinkedList<Arco> t4 = Metodos.kruskalBB(g);
+				Graph g = grafo.getGraphFromGrafo();
 				
-				for (Arco arco : t1)
-					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
-				System.out.println("----------------------------------------------");
-				for (Arco arco : t2)
-					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
-				System.out.println("----------------------------------------------");
-				for (Arco arco : t3)
-					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
-				System.out.println("----------------------------------------------");
-				for (Arco arco : t4)
-					System.out.println(arco.weight+" "+arco.source+" "+arco.destination);
+				long t1 = System.nanoTime();
+				Metodos.esConexo(g);
+				long t2 = System.nanoTime();
+				System.out.println(t2-t1);
+				
+				long t3 = System.nanoTime();
+				Metodos.esConexoDS(g);
+				long t4 = System.nanoTime();
+				System.out.println(t4-t3);
+				
 				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -67,7 +45,7 @@ import Graph.Graph;
 
 		private static Grafo getGrafo(int nodos, int arcos) throws Exception {
 			// TODO Auto-generated method stub
-			String consulta = "curl http://cs.uns.edu.ar/~mom/AyC2019/grafo.php?nodos="+nodos+"&arcos="+arcos+"&conexo="+0;
+			String consulta = "curl http://cs.uns.edu.ar/~mom/AyC2019/grafo.php?nodos="+nodos+"&arcos="+arcos;
 			Process process = Runtime.getRuntime().exec(consulta);
 			InputStream inputSt = process.getInputStream();
 			@SuppressWarnings("resource")
