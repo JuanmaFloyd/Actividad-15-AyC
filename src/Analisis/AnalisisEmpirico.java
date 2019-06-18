@@ -17,16 +17,15 @@ import Graph.Graph;
 				Graph g = grafo.getGraphFromGrafo();
 				
 				long t1 = System.nanoTime();
-				Metodos.esConexo(g);
+				Metodos.esConexoBFS(g);
 				long t2 = System.nanoTime();
-				System.out.println(t2-t1);
 				
 				long t3 = System.nanoTime();
 				Metodos.esConexoDS(g);
 				long t4 = System.nanoTime();
+				
+				System.out.println(t2-t1);
 				System.out.println(t4-t3);
-				
-				
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
@@ -45,7 +44,7 @@ import Graph.Graph;
 
 		private static Grafo getGrafo(int nodos, int arcos) throws Exception {
 			// TODO Auto-generated method stub
-			String consulta = "curl http://cs.uns.edu.ar/~mom/AyC2019/grafo.php?nodos="+nodos+"&arcos="+arcos;
+			String consulta = "curl http://cs.uns.edu.ar/~mom/AyC2019/grafo.php?nodos="+nodos+"&arcos="+arcos+"&conexo=1";
 			Process process = Runtime.getRuntime().exec(consulta);
 			InputStream inputSt = process.getInputStream();
 			@SuppressWarnings("resource")

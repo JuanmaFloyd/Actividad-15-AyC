@@ -15,26 +15,26 @@ public class Metodos {
 	public static LinkedList<Arco> kruskalBB(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
 		int i = 0;
-		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());		
+		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices()); //creamos DS
 		
 		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
-		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist()) //agregamos cada arco al arreglo de arcos
 			for(Arco arco : lista){
 				arcos[i] = arco;
 				i++;
 			}
 		
-		Heap heap = new Heap(arcos);
+		Heap heap = new Heap(arcos); //transformamos el arreglo de arcos en un min heap
 		
 		Arco arco;
 		do{
-			arco = heap.removeMin();
-			if(!ds.inSameSet(arco.destination, arco.source)){
-				ds.union(arco.destination, arco.source);
-				T.add(arco);
+			arco = heap.removeMin(); //para cada arco en el heap tomando de manera ascendente
+			if(!ds.inSameSet(arco.destination, arco.source)){ //si el arco conecta dos nodos disjuntos
+				ds.union(arco.destination, arco.source); //uno los nodos
+				T.add(arco); //agrego el arco a la solucion
 			}
-		} while(!(T.size() == grafo.getVertices()-1));
+		} while(!(T.size() == grafo.getVertices()-1)); //termino cuando tengo N-1 arcos
 		
 		return T;
 	}
@@ -42,26 +42,26 @@ public class Metodos {
 	public static LinkedList<Arco> kruskalBA(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
 		int i = 0;
-		DisjointSets ds = new DisjointSets(grafo.getVertices());
+		DisjointSets ds = new DisjointSets(grafo.getVertices()); //creamos DS
 		
 		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
-		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist()) //agregamos cada arco al arreglo de arcos
 			for(Arco arco : lista){
 				arcos[i] = arco;
 				i++;
 			}
 		
-		Heap heap = new Heap(arcos);
+		Heap heap = new Heap(arcos); //transformamos el arreglo de arcos en un min heap
 		
 		Arco arco;
 		do{
-			arco = heap.removeMin();
-			if(!ds.inSameSet(arco.destination, arco.source)){
-				ds.union(arco.destination, arco.source);
-				T.add(arco);
+			arco = heap.removeMin(); //para cada arco en el heap tomando de manera ascendente
+			if(!ds.inSameSet(arco.destination, arco.source)){ //si el arco conecta dos nodos disjuntos
+				ds.union(arco.destination, arco.source); //uno los nodos
+				T.add(arco); //agrego el arco a la solucion
 			}
-		} while(!(T.size() == grafo.getVertices()-1));
+		} while(!(T.size() == grafo.getVertices()-1)); //termino cuando tengo N-1 arcos
 		
 		return T;
 	}
@@ -69,28 +69,28 @@ public class Metodos {
 	public static LinkedList<Arco> kruskalAB(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
 		int i = 0;
-		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());
+		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices()); //creamos DS
 		
 		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
-		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist()) //agregamos cada arco al arreglo de arcos
 			for(Arco arco : lista){
 				arcos[i] = arco;
 				i++;
 			}
 		
-		mergeSort(arcos, 0, grafo.getCantArcos()-1);
+		mergeSort(arcos, 0, grafo.getCantArcos()-1); //ordenamos el arreglo por peso ascendente
 		
 		i = 0;
 		Arco arco;
 		do{
-			arco = arcos[i];
+			arco = arcos[i]; //para cada arco de manera ascendente
 			i++;
-			if(!ds.inSameSet(arco.destination, arco.source)){
-				ds.union(arco.destination, arco.source);
-				T.add(arco);
+			if(!ds.inSameSet(arco.destination, arco.source)){ //si el arco conecta dos nodos disjuntos
+				ds.union(arco.destination, arco.source); //uno los nodos
+				T.add(arco); //agrego el arco a la solucion
 			}
-		} while(!(T.size() == grafo.getVertices()-1));
+		} while(!(T.size() == grafo.getVertices()-1)); //termino cuando tengo N-1 arcos
 		
 		return T;
 	}
@@ -98,79 +98,81 @@ public class Metodos {
 	public static LinkedList<Arco> kruskalAA(Graph grafo){
 		LinkedList<Arco> T = new LinkedList<>();
 		int i = 0;
-		DisjointSets ds = new DisjointSets(grafo.getVertices());
+		DisjointSets ds = new DisjointSets(grafo.getVertices()); //creamos DS
 		
 		Arco[] arcos = new Arco[grafo.getCantArcos()];
 		
-		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist()) //agregamos cada arco al arreglo de arcos
 			for(Arco arco : lista){
 				arcos[i] = arco;
 				i++;
 			}
 		
-		mergeSort(arcos, 0, grafo.getCantArcos()-1);
+		mergeSort(arcos, 0, grafo.getCantArcos()-1); //ordenamos el arreglo por peso ascendente
 		
 		i = 0;
 		Arco arco;
 		do{
-			arco = arcos[i];
+			arco = arcos[i]; //para cada arco de manera ascendete
 			i++;
-			if(!ds.inSameSet(arco.destination, arco.source)){
-				ds.union(arco.destination, arco.source);
-				T.add(arco);
+			if(!ds.inSameSet(arco.destination, arco.source)){ //si el arco conecta dos nodos disjuntos
+				ds.union(arco.destination, arco.source); //uno los nodos
+				T.add(arco); //agrego el arco a la solucion
 			}
-		} while(!(T.size() == grafo.getVertices()-1));
+		} while(!(T.size() == grafo.getVertices()-1));// termino cuando tengo N-1 arcos
 		
 		return T;
 	}
 	
 	public static boolean esConexoDS(Graph grafo){
-		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices());
+		DisjointSetsHeuristic ds = new DisjointSetsHeuristic(grafo.getVertices()); //creo DS de nodos
 		
-		for(LinkedList<Arco> lista : grafo.getAdjacencylist())
+		for(LinkedList<Arco> lista : grafo.getAdjacencylist()) //para cada arco de mi grafo
 			for(Arco arco : lista){
-				ds.union(arco.destination, arco.source);
-				if (ds.getNumberOfSets() == 1) return true;
+				ds.union(arco.destination, arco.source); //si el destino y el origen son disjuntos, los uno
+				if (ds.getNumberOfSets() == 1) return true; //si la cantidad de conjuntos es 1 luego el grafo es conexo y termino
 			}
 				
-		return ds.getNumberOfSets() == 1;
+		return false; //si llego a esta instancia entonces nunca tuve un solo conjunto y por ende el grafo no es conexo
 	}
 
-	public static boolean esConexo(Graph grafo){
-		int[] color = new int[grafo.getVertices()];
+	public static boolean esConexoBFS(Graph grafo){
+		int[] color = new int[grafo.getVertices()]; //creamos arreglo de colores
 		
-		for (int i = 0; i < grafo.getVertices(); i++)
+		for (int i = 0; i < grafo.getVertices(); i++) //seteamos todos los nodos en blanco
 			color[i] = BLANCO;
 		
 		LinkedList<Integer> cola = new LinkedList<>();
 		
-		int cont = 0;
+		int cont = 0; //creo contador de nodos blancos
 		
-		for (int v = 0; v < grafo.getVertices(); v++){
-			if (color[v] == BLANCO){
-				cont++;
-				color[v] = GRIS;
-				cola.addLast(v);
-				visitar(grafo, cola, color);
+		for (int v = 0; v < grafo.getVertices(); v++){ //para cada vertice
+			if (color[v] == BLANCO){ //si encuentro un nodo blanco
+				cont++; //aumento el contador
+				
+				if (cont > 1) //si es el segundo nodo que encuentro termino con falso
+					return false; //segundo nodo blanco no pude llegar a el a partir del primer nodo blanco (grafo desconexo)
+				
+				color[v] = GRIS; //pongo el nodo en gris
+				cola.addLast(v); //agrego el nodo a la cola
+				visitar(grafo, cola, color); //visito el resto del grafo a partir del nodo que agregue
 			}
-			if (cont > 1)
-				return false;
 		}
 		return true;
 	}
 	
 	private static void visitar(Graph grafo, LinkedList<Integer> cola, int[] color){
-		while(!cola.isEmpty()){
-			int u = cola.getFirst();
-			for (Arco arco : grafo.getAdyacentes(u)){
-				if (color[arco.destination] == BLANCO){
-					color[arco.destination] = GRIS;
-					cola.addLast(arco.destination);
+		while(!cola.isEmpty()){ //mientras haya nodos en la cola
+			int u = cola.getFirst(); //tomo el primer nodo de la cola
+			for (Arco arco : grafo.getAdyacentes(u)){ //para cada arco adyacente al nodo u
+				if (color[arco.destination] == BLANCO){ //si encuentro un nodo destino blanco
+					color[arco.destination] = GRIS; //lo pinto de gris
+					cola.addLast(arco.destination); //y lo agrego a la cola
 				}
 			}
 			
-			color[u] = NEGRO;
-			cola.removeFirst();
+			color[u] = NEGRO; //pinto al nodo de negro cuando ya no tiene adyacentes blancos para visitar
+			cola.removeFirst(); //y lo remuevo de la cola, ya termine con este nodo
 		}
 	}
 	
